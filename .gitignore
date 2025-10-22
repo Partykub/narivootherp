@@ -1,0 +1,5 @@
+# Legacy database dumps (too large for Git)
+data/legacy/microsoft_access_db/
+
+*.mdb
+*.accdb
