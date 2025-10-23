@@ -54,7 +54,7 @@ Each agent must:
 | Observability | **Prometheus 2.51, Grafana 11.1, EFK 8.15, Sentry SaaS 24.x** | Metrics, logs, tracing |
 | Documentation | **Markdown, Mermaid, Draw.io** | Store diagrams in `docs/diagrams/` |
 
----
+- Diagram artefacts: `docs/diagrams/ERD.md` (Mermaid ERD สำหรับโดเมน MVP; อัปเดตเมื่อ schema เปลี่ยน)
 
 ## 4. Security & Compliance Guidelines
 **Mandatory for all agents (Dev, Security, Reviewer, Test):**
