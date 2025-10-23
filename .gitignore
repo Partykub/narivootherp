@@ -3,3 +3,16 @@ data/legacy/microsoft_access_db/
 
 *.mdb
 *.accdb
+
+# Node.js / pnpm workspace artefacts
+node_modules/
+.pnpm-store/
+dist/
+build/
+.next/
+coverage/
+*.log
+.env
+.env.*
+.DS_Store
+.vscode/
