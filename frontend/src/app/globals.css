@@ -1,0 +1,1905 @@
+@import "tailwindcss";
+
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+/* =======================
+   🔄 CSS RESET & BASICS
+   ======================= */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background-color: var(--color-background-page);
+  color: var(--color-content-primary);
+}
+
+body {
+  background-color: var(--color-background-page);
+  color: var(--color-content-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =======================
+   🎨 DESIGN TOKEN SYSTEM
+   ======================= */
+
+/* 1. Typography Tokens */
+:root {
+  /* Font Families */
+  --font-family-primary: 'Inter', 'Sarabun', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-secondary: 'Merriweather', 'Noto Serif Thai', serif;
+  --font-family-code: 'Fira Code', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-md: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+}
+
+/* 2. Spacing Tokens */
+:root {
+  /* Base spacing scale (4px base) */
+  --space-0: 0;
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+  --space-32: 8rem;    /* 128px */
+}
+
+/* 3. Sizing Tokens */
+:root {
+  /* Component Sizes */
+  --size-icon-xs: 1rem;     /* 16px */
+  --size-icon-sm: 1.25rem;  /* 20px */
+  --size-icon-md: 1.5rem;   /* 24px */
+  --size-icon-lg: 2rem;     /* 32px */
+  --size-icon-xl: 2.5rem;   /* 40px */
+  
+  /* Button Heights */
+  --size-button-sm: 2rem;   /* 32px */
+  --size-button-md: 2.5rem; /* 40px */
+  --size-button-lg: 3rem;   /* 48px */
+  
+  /* Input Heights */
+  --size-input-sm: 2rem;    /* 32px */
+  --size-input-md: 2.5rem;  /* 40px */
+  --size-input-lg: 3rem;    /* 48px */
+  
+  /* Layout Sizes */
+  --size-container-sm: 640px;
+  --size-container-md: 768px;
+  --size-container-lg: 1024px;
+  --size-container-xl: 1280px;
+  --size-container-2xl: 1536px;
+  --size-sidebar-width: 256px;
+  --size-header-height: 64px;
+}
+
+/* 3.5. Icon Tokens */
+:root {
+  /* Icon Sizes - เหมือนกับที่มีแล้วแต่เพิ่มขนาดใหม่ */
+  --icon-size-xs: 0.75rem;   /* 12px */
+  --icon-size-sm: 1rem;      /* 16px */
+  --icon-size-md: 1.25rem;   /* 20px */
+  --icon-size-lg: 1.5rem;    /* 24px */
+  --icon-size-xl: 2rem;      /* 32px */
+  --icon-size-2xl: 2.5rem;   /* 40px */
+  --icon-size-3xl: 3rem;     /* 48px */
+
+  /* Icon Stroke Weights */
+  --icon-stroke-thin: 1;
+  --icon-stroke-regular: 1.5;
+  --icon-stroke-medium: 2;
+  --icon-stroke-bold: 2.5;
+  --icon-stroke-heavy: 3;
+
+  /* Icon States */
+  --icon-opacity-disabled: 0.4;
+  --icon-opacity-muted: 0.6;
+  --icon-opacity-normal: 1;
+
+  /* Icon Colors Semantic - Fixed for visibility */
+  --icon-color-primary: #111827;
+  --icon-color-secondary: #4b5563;
+  --icon-color-tertiary: #6b7280;
+  --icon-color-brand: #ff70c6;
+  --icon-color-success: #16a34a;
+  --icon-color-warning: #d97706;
+  --icon-color-danger: #dc2626;
+  --icon-color-info: #0891b2;
+  --icon-color-white: #ffffff;
+  
+  /* Icon Spacing */
+  --icon-gap-xs: 0.25rem;    /* 4px */
+  --icon-gap-sm: 0.5rem;     /* 8px */
+  --icon-gap-md: 0.75rem;    /* 12px */
+  --icon-gap-lg: 1rem;       /* 16px */
+}
+
+/* 4. Border & Radius Tokens */
+:root {
+  /* Border Widths */
+  --border-width-none: 0;
+  --border-width-sm: 1px;
+  --border-width-md: 2px;
+  --border-width-lg: 4px;
+  --border-width-xl: 8px;
+  
+  /* Border Radius */
+  --border-radius-none: 0;
+  --border-radius-xs: 0.125rem; /* 2px */
+  --border-radius-sm: 0.25rem;  /* 4px */
+  --border-radius-md: 0.375rem; /* 6px */
+  --border-radius-lg: 0.5rem;   /* 8px */
+  --border-radius-xl: 0.75rem;  /* 12px */
+  --border-radius-2xl: 1rem;    /* 16px */
+  --border-radius-3xl: 1.5rem;  /* 24px */
+  --border-radius-full: 9999px;
+}
+
+/* 5. Shadows & Elevation Tokens */
+:root {
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-none: none;
+}
+
+/* 6. Z-Index Tokens */
+:root {
+  --z-index-base: 0;
+  --z-index-content: 1;
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1100;
+  --z-index-modal-backdrop: 1200;
+  --z-index-modal: 1300;
+  --z-index-tooltip: 1400;
+  --z-index-toast: 1500;
+}
+
+/* 7. Motion & Animation Tokens */
+:root {
+  /* Duration */
+  --duration-fast: 100ms;
+  --duration-normal: 250ms;
+  --duration-slow: 500ms;
+  --duration-slower: 750ms;
+  
+  /* Easing */
+  --easing-linear: linear;
+  --easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 8. Breakpoints Tokens */
+:root {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* 9. Opacity Tokens */
+:root {
+  --opacity-0: 0;
+  --opacity-5: 0.05;
+  --opacity-10: 0.1;
+  --opacity-20: 0.2;
+  --opacity-25: 0.25;
+  --opacity-30: 0.3;
+  --opacity-40: 0.4;
+  --opacity-50: 0.5;
+  --opacity-60: 0.6;
+  --opacity-70: 0.7;
+  --opacity-75: 0.75;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
+  --opacity-95: 0.95;
+  --opacity-100: 1;
+}
+
+/* Raw Color Tokens */
+:root {
+  /* Primary Brand Colors - Pink (#FF70C6) */
+  --color-pink-50: #fdf2f8;
+  --color-pink-100: #fce7f3;
+  --color-pink-200: #fbcfe8;
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ff70c6;
+  --color-pink-600: #e55db1;
+  --color-pink-700: #cc4a9c;
+  --color-pink-800: #b23787;
+  --color-pink-900: #992472;
+  --color-pink-950: #7f115d;
+
+  /* Secondary Brand Colors - Blue (#5CBBFF) */
+  --color-blue-50: #f0f9ff;
+  --color-blue-100: #e0f2fe;
+  --color-blue-200: #bae6fd;
+  --color-blue-300: #7dd3fc;
+  --color-blue-400: #38bdf8;
+  --color-blue-500: #5cbbff;
+  --color-blue-600: #0ea5e9;
+  --color-blue-700: #0284c7;
+  --color-blue-800: #0369a1;
+  --color-blue-900: #075985;
+  --color-blue-950: #0c4a6e;
+
+  /* Neutral Grays */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+
+  /* Success/Green */
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #166534;
+  --color-green-900: #14532d;
+  --color-green-950: #052e16;
+
+  /* Warning/Amber */
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-amber-950: #451a03;
+
+  /* Danger/Red */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+  --color-red-950: #450a0a;
+
+  /* Info/Cyan */
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-cyan-700: #0e7490;
+  --color-cyan-800: #155e75;
+  --color-cyan-900: #164e63;
+  --color-cyan-950: #083344;
+
+  /* Purple/Violet */
+  --color-purple-50: #faf5ff;
+  --color-purple-100: #f3e8ff;
+  --color-purple-200: #e9d5ff;
+  --color-purple-300: #d8b4fe;
+  --color-purple-400: #c084fc;
+  --color-purple-500: #a855f7;
+  --color-purple-600: #9333ea;
+  --color-purple-700: #7c3aed;
+  --color-purple-800: #6b21a8;
+  --color-purple-900: #581c87;
+  --color-purple-950: #3b0764;
+
+  /* Teal */
+  --color-teal-50: #f0fdfa;
+  --color-teal-100: #ccfbf1;
+  --color-teal-200: #99f6e4;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+  --color-teal-800: #115e59;
+  --color-teal-900: #134e4a;
+  --color-teal-950: #042f2e;
+
+  /* Orange */
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-900: #7c2d12;
+  --color-orange-950: #431407;
+}
+
+/* === COMPREHENSIVE SEMANTIC COLOR TOKENS === */
+/* 
+  COLOR CONTRAST GUIDELINES:
+  - สำหรับ badges: ใช้ bg-[color]-600 กับ text-white (แทน bg-[color]-100 กับ text-[color]-800)
+  - สำหรับพื้นหลังเข้ม: ใช้ตัวอักษรสีอ่อน (text-white, text-[color]-100)
+  - สำหรับพื้นหลังอ่อน: ใช้ตัวอักษรสีเข้ม (text-gray-900, text-[color]-900)
+  - ตรวจสอบ contrast ratio ให้เป็นไปตาม WCAG 2.1 AA (4.5:1 สำหรับ normal text)
+*/
+:root {
+  /* === 1. Surface / Background Colors === */
+  /* Page / Canvas */
+  --color-background-page: var(--color-gray-50);
+  --color-background-page-alt: var(--color-gray-100);
+  
+  /* Component Surface */
+  --color-background-surface: #ffffff;
+  --color-background-surface-raised: #ffffff;
+  --color-background-surface-sunken: var(--color-gray-50);
+  
+  /* Inverse & Overlay */
+  --color-background-inverse: var(--color-gray-900);
+  --color-background-overlay: rgba(17, 24, 39, 0.75);
+
+  /* === 2. Text & Content Colors === */
+  /* Primary Content */
+  --color-content-primary: #111827;
+  --color-content-secondary: var(--color-gray-600);
+  --color-content-tertiary: var(--color-gray-400);
+  
+  /* Special Content */
+  --color-content-placeholder: var(--color-gray-400);
+  --color-content-inverse: #ffffff;
+  --color-content-on-brand: #ffffff;
+
+  /* === 3. Brand & Accent Colors === */
+  /* Primary Brand - Modern Pink/Rose */
+  --color-brand-primary: #ec4899;
+  --color-brand-primary-hover: #db2777;
+  --color-brand-primary-active: #be185d;
+  --color-brand-primary-subtle: #fdf2f8;
+  
+  /* Secondary Brand - Modern Blue/Indigo */
+  --color-brand-secondary: #3b82f6;
+  --color-brand-secondary-hover: #2563eb;
+  --color-brand-secondary-active: #1d4ed8;
+  --color-brand-secondary-subtle: #eff6ff;
+
+  /* === 4. Border & Separator Colors === */
+  /* Border */
+  --color-border-default: var(--color-gray-200);
+  --color-border-strong: var(--color-gray-300);
+  --color-border-subtle: var(--color-gray-100);
+  
+  /* Separator */
+  --color-separator-default: var(--color-gray-200);
+  --color-separator-subtle: var(--color-gray-100);
+
+  /* === 5. Semantic / Status Colors === */
+  /* Danger / Error - Modern Red */
+  --color-status-danger: #ef4444;
+  --color-status-danger-hover: #dc2626;
+  --color-status-danger-active: #b91c1c;
+  --color-status-danger-background: #ef4444;
+  --color-status-danger-background-subtle: #fef2f2;
+  
+  /* Warning - Modern Amber/Orange */
+  --color-status-warning: #f59e0b;
+  --color-status-warning-hover: #d97706;
+  --color-status-warning-active: #b45309;
+  --color-status-warning-background: #f59e0b;
+  --color-status-warning-background-subtle: #fffbeb;
+  
+  /* Success - Modern Emerald */
+  --color-status-success: #10b981;
+  --color-status-success-hover: #059669;
+  --color-status-success-active: #047857;
+  --color-status-success-background: #10b981;
+  --color-status-success-background-subtle: #ecfdf5;
+  
+  /* Info - Modern Sky Blue */
+  --color-status-info: #0ea5e9;
+  --color-status-info-hover: #0284c7;
+  --color-status-info-active: #0369a1;
+  --color-status-info-background: #0ea5e9;
+  --color-status-info-background-subtle: #f0f9ff;
+
+  /* === 6. Interaction Colors === */
+  /* Focus */
+  --color-focus-outline: var(--color-pink-500);
+  
+  /* Disabled */
+  --color-interaction-disabled-background: var(--color-gray-100);
+  --color-interaction-disabled-content: var(--color-gray-400);
+  --color-interaction-disabled-border: var(--color-gray-200);
+  
+  /* Hover & Active */
+  --color-interaction-hover: var(--color-gray-50);
+  --color-interaction-active: var(--color-gray-100);
+  
+  /* Selected */
+  --color-interaction-selected: var(--color-pink-50);
+  --color-interaction-selected-hover: var(--color-pink-100);
+
+  /* === 7. Specialized Colors === */
+  /* Links */
+  --color-link-default: var(--color-pink-600);
+  --color-link-visited: var(--color-pink-800);
+  --color-link-hover: var(--color-pink-700);
+  
+  /* Data Visualization */
+  --color-dataviz-1: var(--color-pink-500);
+  --color-dataviz-2: var(--color-blue-500);
+  --color-dataviz-3: var(--color-green-500);
+  --color-dataviz-4: var(--color-amber-500);
+  --color-dataviz-5: var(--color-red-500);
+  --color-dataviz-6: var(--color-cyan-500);
+  --color-dataviz-7: var(--color-purple-500);
+  --color-dataviz-8: var(--color-teal-500);
+  
+  /* Utilities */
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-scrim: rgba(0, 0, 0, 0.4);
+}
+
+/* === DARK MODE TOKENS === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* === 1. Surface / Background Colors === */
+    /* Page / Canvas */
+    --color-background-page: var(--color-gray-950);
+    --color-background-page-alt: var(--color-gray-900);
+    
+    /* Component Surface */
+    --color-background-surface: var(--color-gray-900);
+    --color-background-surface-raised: var(--color-gray-800);
+    --color-background-surface-sunken: var(--color-gray-950);
+    
+    /* Inverse & Overlay */
+    --color-background-inverse: var(--color-gray-50);
+    --color-background-overlay: rgba(0, 0, 0, 0.8);
+
+    /* === 2. Text & Content Colors === */
+    /* Primary Content */
+    --color-content-primary: #f9fafb;
+    --color-content-secondary: var(--color-gray-300);
+    --color-content-tertiary: var(--color-gray-500);
+    
+    /* Special Content */
+    --color-content-placeholder: var(--color-gray-500);
+    --color-content-inverse: var(--color-gray-900);
+    --color-content-on-brand: #ffffff;
+
+    /* === 4. Border & Separator Colors === */
+    /* Border */
+    --color-border-default: var(--color-gray-700);
+    --color-border-strong: var(--color-gray-600);
+    --color-border-subtle: var(--color-gray-800);
+    
+    /* Separator */
+    --color-separator-default: var(--color-gray-700);
+    --color-separator-subtle: var(--color-gray-800);
+
+    /* === 5. Semantic / Status Colors === */
+    /* Danger */
+    --color-status-danger-background-subtle: var(--color-red-950);
+    
+    /* Warning */
+    --color-status-warning-background-subtle: var(--color-amber-950);
+    
+    /* Success */
+    --color-status-success-background-subtle: var(--color-green-950);
+    
+    /* Info */
+    --color-status-info-background-subtle: var(--color-cyan-950);
+
+    /* === 6. Interaction Colors === */
+    /* Disabled */
+    --color-interaction-disabled-background: var(--color-gray-800);
+    --color-interaction-disabled-content: var(--color-gray-600);
+    --color-interaction-disabled-border: var(--color-gray-700);
+    
+    /* Hover & Active */
+    --color-interaction-hover: var(--color-gray-800);
+    --color-interaction-active: var(--color-gray-700);
+    
+    /* Selected */
+    --color-interaction-selected: var(--color-pink-950);
+    --color-interaction-selected-hover: var(--color-pink-900);
+
+    /* === 3. Brand & Accent Colors === */
+    /* Primary Brand - make slightly lighter in dark mode */
+    --color-brand-primary: var(--color-pink-400);
+    --color-brand-primary-hover: var(--color-pink-300);
+    --color-brand-primary-active: var(--color-pink-500);
+    --color-brand-primary-subtle: var(--color-pink-950);
+    
+    /* Secondary Brand */
+    --color-brand-secondary: var(--color-blue-400);
+    --color-brand-secondary-hover: var(--color-blue-300);
+    --color-brand-secondary-active: var(--color-blue-500);
+    --color-brand-secondary-subtle: var(--color-blue-950);
+
+    /* Utilities */
+    --color-shadow: rgba(0, 0, 0, 0.3);
+    --color-scrim: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Manual dark mode toggle support */
+[data-theme="dark"] {
+  /* === 1. Surface / Background Colors === */
+  /* Page / Canvas */
+  --color-background-page: var(--color-gray-900);
+  --color-background-page-alt: var(--color-gray-800);
+  
+  /* Component Surface */
+  --color-background-surface: var(--color-gray-900);
+  --color-background-surface-raised: var(--color-gray-800);
+  --color-background-surface-sunken: var(--color-gray-950);
+  
+  /* Inverse & Overlay */
+  --color-background-inverse: var(--color-gray-50);
+  --color-background-overlay: rgba(0, 0, 0, 0.8);
+
+  /* === 2. Text & Content Colors === */
+  /* Primary Content */
+  --color-content-primary: var(--color-gray-50);
+  --color-content-secondary: var(--color-gray-300);
+  --color-content-tertiary: var(--color-gray-500);
+  
+  /* Special Content */
+  --color-content-placeholder: var(--color-gray-500);
+  --color-content-inverse: var(--color-gray-900);
+  --color-content-on-brand: #ffffff;
+
+  /* === 4. Border & Separator Colors === */
+  /* Border */
+  --color-border-default: var(--color-gray-700);
+  --color-border-strong: var(--color-gray-600);
+  --color-border-subtle: var(--color-gray-800);
+  
+  /* Separator */
+  --color-separator-default: var(--color-gray-700);
+  --color-separator-subtle: var(--color-gray-800);
+
+  /* === 5. Semantic / Status Colors === */
+  /* Danger */
+  --color-status-danger-background-subtle: var(--color-red-950);
+  
+  /* Warning */
+  --color-status-warning-background-subtle: var(--color-amber-950);
+  
+  /* Success */
+  --color-status-success-background-subtle: var(--color-green-950);
+  
+  /* Info */
+  --color-status-info-background-subtle: var(--color-cyan-950);
+
+  /* === 6. Interaction Colors === */
+  /* Disabled */
+  --color-interaction-disabled-background: var(--color-gray-800);
+  --color-interaction-disabled-content: var(--color-gray-600);
+  --color-interaction-disabled-border: var(--color-gray-700);
+  
+  /* Hover & Active */
+  --color-interaction-hover: var(--color-gray-800);
+  --color-interaction-active: var(--color-gray-700);
+  
+  /* Selected */
+  --color-interaction-selected: var(--color-pink-950);
+  --color-interaction-selected-hover: var(--color-pink-900);
+
+  /* === 3. Brand & Accent Colors === */
+  /* Primary Brand - make slightly lighter in dark mode */
+  --color-brand-primary: var(--color-pink-400);
+  --color-brand-primary-hover: var(--color-pink-300);
+  --color-brand-primary-active: var(--color-pink-500);
+  --color-brand-primary-subtle: var(--color-pink-950);
+  
+  /* Secondary Brand */
+  --color-brand-secondary: var(--color-blue-400);
+  --color-brand-secondary-hover: var(--color-blue-300);
+  --color-brand-secondary-active: var(--color-blue-500);
+  --color-brand-secondary-subtle: var(--color-blue-950);
+
+  /* Utilities */
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-scrim: rgba(0, 0, 0, 0.7);
+}
+
+/* === CLASS-BASED DARK MODE (Manual Toggle) === */
+.dark,
+[data-theme="dark"] {
+  /* === 1. Surface / Background Colors === */
+  --color-background-page: var(--color-gray-900);
+  --color-background-page-alt: var(--color-gray-800);
+  
+  /* Component Surface */
+  --color-background-surface: var(--color-gray-800);
+  --color-background-surface-raised: var(--color-gray-700);
+  --color-background-surface-sunken: var(--color-gray-900);
+  
+  /* Inverse & Overlay */
+  --color-background-inverse: var(--color-gray-50);
+  --color-background-overlay: rgba(0, 0, 0, 0.8);
+
+  /* === 2. Text & Content Colors === */
+  --color-content-primary: #f9fafb;
+  --color-content-secondary: var(--color-gray-300);
+  --color-content-tertiary: var(--color-gray-500);
+  
+  /* Special Content */
+  --color-content-placeholder: var(--color-gray-500);
+  --color-content-inverse: var(--color-gray-900);
+  --color-content-on-brand: #ffffff;
+
+  /* === 4. Border & Separator Colors === */
+  --color-border-default: var(--color-gray-700);
+  --color-border-strong: var(--color-gray-600);
+  --color-border-subtle: var(--color-gray-800);
+  
+  /* Separator */
+  --color-separator-default: var(--color-gray-700);
+  --color-separator-subtle: var(--color-gray-800);
+
+  /* === 6. Interaction Colors === */
+  --color-interaction-disabled-background: var(--color-gray-800);
+  --color-interaction-disabled-content: var(--color-gray-600);
+  --color-interaction-disabled-border: var(--color-gray-700);
+  
+  /* Hover & Active */
+  --color-interaction-hover: var(--color-gray-800);
+  --color-interaction-active: var(--color-gray-700);
+  
+  /* Selected */
+  --color-interaction-selected: var(--color-pink-950);
+  --color-interaction-selected-hover: var(--color-pink-900);
+
+  /* === 3. Brand & Accent Colors === */
+  --color-brand-primary: var(--color-pink-400);
+  --color-brand-primary-hover: var(--color-pink-300);
+  --color-brand-primary-active: var(--color-pink-500);
+  --color-brand-primary-subtle: var(--color-pink-950);
+  
+  --color-brand-secondary: var(--color-blue-400);
+  --color-brand-secondary-hover: var(--color-blue-300);
+  --color-brand-secondary-active: var(--color-blue-500);
+  --color-brand-secondary-subtle: var(--color-blue-950);
+
+  /* Utilities */
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-scrim: rgba(0, 0, 0, 0.7);
+}
+
+/* === Base Styles === */
+html {
+  background-color: var(--color-background-page);
+  color: var(--color-content-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--color-background-page);
+  color: var(--color-content-primary);
+  font-family: var(--font-inter);
+}
+
+/* === UTILITY CLASSES FOR TOKEN USAGE === */
+
+/* Background Colors */
+.bg-page { background-color: var(--color-background-page); }
+.bg-page-alt { background-color: var(--color-background-page-alt); }
+.bg-surface { background-color: var(--color-background-surface); }
+.bg-surface-raised { background-color: var(--color-background-surface-raised); }
+.bg-surface-sunken { background-color: var(--color-background-surface-sunken); }
+.bg-inverse { background-color: var(--color-background-inverse); }
+.bg-overlay { background-color: var(--color-background-overlay); }
+
+/* Text/Content Colors */
+.text-primary { color: var(--color-content-primary); }
+.text-secondary { color: var(--color-content-secondary); }
+.text-tertiary { color: var(--color-content-tertiary); }
+.text-placeholder { color: var(--color-content-placeholder); }
+.text-inverse { color: var(--color-content-inverse); }
+.text-on-brand { color: var(--color-content-on-brand); }
+
+/* Brand Colors */
+.text-brand-primary { color: var(--color-brand-primary); }
+.text-brand-secondary { color: var(--color-brand-secondary); }
+.bg-brand-primary { background-color: var(--color-brand-primary); }
+.bg-brand-secondary { background-color: var(--color-brand-secondary); }
+.bg-brand-primary-subtle { background-color: var(--color-brand-primary-subtle); }
+.bg-brand-secondary-subtle { background-color: var(--color-brand-secondary-subtle); }
+
+/* Border Colors */
+.border-default { border-color: var(--color-border-default); }
+.border-strong { border-color: var(--color-border-strong); }
+.border-subtle { border-color: var(--color-border-subtle); }
+
+/* Status Colors */
+.text-success { color: var(--color-status-success); }
+.text-warning { color: var(--color-status-warning); }
+.text-danger { color: var(--color-status-danger); }
+.text-info { color: var(--color-status-info); }
+.bg-success { background-color: var(--color-status-success); }
+.bg-warning { background-color: var(--color-status-warning); }
+.bg-danger { background-color: var(--color-status-danger); }
+.bg-info { background-color: var(--color-status-info); }
+.bg-success-subtle { background-color: var(--color-status-success-background-subtle); }
+.bg-warning-subtle { background-color: var(--color-status-warning-background-subtle); }
+.bg-danger-subtle { background-color: var(--color-status-danger-background-subtle); }
+.bg-info-subtle { background-color: var(--color-status-info-background-subtle); }
+
+/* Interaction States */
+.hover-bg-primary:hover { background-color: var(--color-interaction-hover); }
+.hover-bg-active:hover { background-color: var(--color-interaction-active); }
+.hover-bg-selected:hover { background-color: var(--color-interaction-selected-hover); }
+.bg-selected { background-color: var(--color-interaction-selected); }
+.bg-disabled { background-color: var(--color-interaction-disabled-background); }
+.text-disabled { color: var(--color-interaction-disabled-content); }
+.border-disabled { border-color: var(--color-interaction-disabled-border); }
+
+/* Brand Hover States */
+.hover-bg-brand-primary:hover { background-color: var(--color-brand-primary-hover); }
+.hover-bg-brand-secondary:hover { background-color: var(--color-brand-secondary-hover); }
+.active-bg-brand-primary:active { background-color: var(--color-brand-primary-active); }
+.active-bg-brand-secondary:active { background-color: var(--color-brand-secondary-active); }
+
+/* Status Hover States */
+.hover-bg-success:hover { background-color: var(--color-status-success-hover); }
+.hover-bg-warning:hover { background-color: var(--color-status-warning-hover); }
+.hover-bg-danger:hover { background-color: var(--color-status-danger-hover); }
+.hover-bg-info:hover { background-color: var(--color-status-info-hover); }
+
+/* Link Colors */
+.text-link { color: var(--color-link-default); }
+.text-link-visited { color: var(--color-link-visited); }
+.hover-text-link:hover { color: var(--color-link-hover); }
+
+/* Focus States */
+.focus-outline:focus { 
+  outline: 2px solid var(--color-focus-outline);
+  outline-offset: 2px;
+}
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-focus-outline);
+}
+
+/* Data Visualization */
+.bg-dataviz-1 { background-color: var(--color-dataviz-1); }
+.bg-dataviz-2 { background-color: var(--color-dataviz-2); }
+.bg-dataviz-3 { background-color: var(--color-dataviz-3); }
+.bg-dataviz-4 { background-color: var(--color-dataviz-4); }
+.bg-dataviz-5 { background-color: var(--color-dataviz-5); }
+.bg-dataviz-6 { background-color: var(--color-dataviz-6); }
+.bg-dataviz-7 { background-color: var(--color-dataviz-7); }
+.bg-dataviz-8 { background-color: var(--color-dataviz-8); }
+
+/* Shadows and Effects */
+.shadow-token { box-shadow: 0 4px 6px -1px var(--color-shadow); }
+.shadow-token-lg { box-shadow: 0 10px 15px -3px var(--color-shadow); }
+.backdrop-scrim { background-color: var(--color-scrim); }
+
+/* Common Component Patterns */
+.card {
+  background-color: var(--color-background-surface);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-content-primary);
+}
+
+.card-raised {
+  background-color: var(--color-background-surface-raised);
+  border: 1px solid var(--color-border-strong);
+}
+
+.input {
+  background-color: var(--color-background-surface-sunken);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-content-primary);
+}
+
+.input::placeholder {
+  color: var(--color-content-placeholder);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-focus-outline);
+  box-shadow: 0 0 0 1px var(--color-focus-outline);
+}
+
+.btn-primary {
+  background-color: var(--color-brand-primary);
+  color: var(--color-content-on-brand);
+  border: 1px solid var(--color-brand-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-brand-primary-hover);
+  border-color: var(--color-brand-primary-hover);
+}
+
+.btn-primary:active {
+  background-color: var(--color-brand-primary-active);
+  border-color: var(--color-brand-primary-active);
+}
+
+.btn-secondary {
+  background-color: var(--color-brand-secondary);
+  color: var(--color-content-on-brand);
+  border: 1px solid var(--color-brand-secondary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-brand-secondary-hover);
+  border-color: var(--color-brand-secondary-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-content-primary);
+  border: 1px solid var(--color-border-default);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-interaction-hover);
+}
+
+.btn-outline:active {
+  background-color: var(--color-interaction-active);
+}
+
+.badge-success {
+  background-color: var(--color-status-success-background-subtle);
+  color: var(--color-status-success);
+}
+
+.badge-warning {
+  background-color: var(--color-status-warning-background-subtle);
+  color: var(--color-status-warning);
+}
+
+.badge-danger {
+  background-color: var(--color-status-danger-background-subtle);
+  color: var(--color-status-danger);
+}
+
+.badge-info {
+  background-color: var(--color-status-info-background-subtle);
+  color: var(--color-status-info);
+}
+
+/* Separator Lines */
+.separator-h {
+  height: 1px;
+  background-color: var(--color-separator-default);
+  border: none;
+}
+
+.separator-v {
+  width: 1px;
+  background-color: var(--color-separator-default);
+  border: none;
+}
+
+.separator-subtle {
+  background-color: var(--color-separator-subtle);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-grey-950);
+    --foreground: var(--color-grey-100);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ===== DESIGN SYSTEM UTILITIES ===== */
+
+/* Chakra UI และ Tailwind CSS ใช้งานร่วมกัน */
+.chakra-ui-theme {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Design System Button Classes */
+.button-primary {
+  background-color: var(--color-primary);
+  color: var(--text-on-primary);
+  border: 1px solid var(--color-primary);
+  transition: all 0.2s ease;
+}
+
+.button-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.button-secondary {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.button-secondary:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-strong);
+}
+
+/* Semantic Color Classes */
+.bg-surface {
+  background-color: var(--bg-primary);
+}
+
+.bg-surface-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.text-content {
+  color: var(--text-primary);
+}
+
+.text-content-secondary {
+  color: var(--text-secondary);
+}
+
+.border-default {
+  border-color: var(--border-subtle);
+}
+
+/* ============================
+   📦 COMPREHENSIVE UTILITY CLASSES 
+   ============================ */
+
+/* Typography Utility Classes */
+.font-primary { font-family: var(--font-family-primary); }
+.font-secondary { font-family: var(--font-family-secondary); }
+.font-code { font-family: var(--font-family-code); }
+
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-md { font-size: var(--font-size-md); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-2xl { font-size: var(--font-size-2xl); }
+.text-3xl { font-size: var(--font-size-3xl); }
+.text-4xl { font-size: var(--font-size-4xl); }
+.text-5xl { font-size: var(--font-size-5xl); }
+.text-6xl { font-size: var(--font-size-6xl); }
+
+.font-light { font-weight: var(--font-weight-light); }
+.font-regular { font-weight: var(--font-weight-regular); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-extrabold { font-weight: var(--font-weight-extrabold); }
+
+.leading-tight { line-height: var(--line-height-tight); }
+.leading-normal { line-height: var(--line-height-normal); }
+.leading-relaxed { line-height: var(--line-height-relaxed); }
+.leading-loose { line-height: var(--line-height-loose); }
+
+.tracking-tight { letter-spacing: var(--letter-spacing-tight); }
+.tracking-normal { letter-spacing: var(--letter-spacing-normal); }
+.tracking-wide { letter-spacing: var(--letter-spacing-wide); }
+.tracking-wider { letter-spacing: var(--letter-spacing-wider); }
+.tracking-widest { letter-spacing: var(--letter-spacing-widest); }
+
+/* Spacing Utility Classes */
+.p-0 { padding: var(--space-0); }
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-5 { padding: var(--space-5); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+.p-10 { padding: var(--space-10); }
+.p-12 { padding: var(--space-12); }
+.p-16 { padding: var(--space-16); }
+.p-20 { padding: var(--space-20); }
+.p-24 { padding: var(--space-24); }
+.p-32 { padding: var(--space-32); }
+
+.px-0 { padding-left: var(--space-0); padding-right: var(--space-0); }
+.px-1 { padding-left: var(--space-1); padding-right: var(--space-1); }
+.px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
+.px-3 { padding-left: var(--space-3); padding-right: var(--space-3); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-5 { padding-left: var(--space-5); padding-right: var(--space-5); }
+.px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+.px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+
+.py-0 { padding-top: var(--space-0); padding-bottom: var(--space-0); }
+.py-1 { padding-top: var(--space-1); padding-bottom: var(--space-1); }
+.py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.py-3 { padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.py-5 { padding-top: var(--space-5); padding-bottom: var(--space-5); }
+.py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+
+.m-0 { margin: var(--space-0); }
+.m-1 { margin: var(--space-1); }
+.m-2 { margin: var(--space-2); }
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-5 { margin: var(--space-5); }
+.m-6 { margin: var(--space-6); }
+.m-8 { margin: var(--space-8); }
+.m-10 { margin: var(--space-10); }
+.m-12 { margin: var(--space-12); }
+.m-16 { margin: var(--space-16); }
+
+.mx-0 { margin-left: var(--space-0); margin-right: var(--space-0); }
+.mx-1 { margin-left: var(--space-1); margin-right: var(--space-1); }
+.mx-2 { margin-left: var(--space-2); margin-right: var(--space-2); }
+.mx-3 { margin-left: var(--space-3); margin-right: var(--space-3); }
+.mx-4 { margin-left: var(--space-4); margin-right: var(--space-4); }
+.mx-5 { margin-left: var(--space-5); margin-right: var(--space-5); }
+.mx-6 { margin-left: var(--space-6); margin-right: var(--space-6); }
+.mx-8 { margin-left: var(--space-8); margin-right: var(--space-8); }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.my-0 { margin-top: var(--space-0); margin-bottom: var(--space-0); }
+.my-1 { margin-top: var(--space-1); margin-bottom: var(--space-1); }
+.my-2 { margin-top: var(--space-2); margin-bottom: var(--space-2); }
+.my-3 { margin-top: var(--space-3); margin-bottom: var(--space-3); }
+.my-4 { margin-top: var(--space-4); margin-bottom: var(--space-4); }
+.my-5 { margin-top: var(--space-5); margin-bottom: var(--space-5); }
+.my-6 { margin-top: var(--space-6); margin-bottom: var(--space-6); }
+.my-8 { margin-top: var(--space-8); margin-bottom: var(--space-8); }
+
+.gap-0 { gap: var(--space-0); }
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-5 { gap: var(--space-5); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
+.gap-10 { gap: var(--space-10); }
+.gap-12 { gap: var(--space-12); }
+
+/* Sizing Utility Classes */
+.w-icon-xs { width: var(--size-icon-xs); }
+.w-icon-sm { width: var(--size-icon-sm); }
+.w-icon-md { width: var(--size-icon-md); }
+.w-icon-lg { width: var(--size-icon-lg); }
+.w-icon-xl { width: var(--size-icon-xl); }
+
+.h-icon-xs { height: var(--size-icon-xs); }
+.h-icon-sm { height: var(--size-icon-sm); }
+.h-icon-md { height: var(--size-icon-md); }
+.h-icon-lg { height: var(--size-icon-lg); }
+.h-icon-xl { height: var(--size-icon-xl); }
+
+.h-button-sm { height: var(--size-button-sm); }
+.h-button-md { height: var(--size-button-md); }
+.h-button-lg { height: var(--size-button-lg); }
+
+.h-input-sm { height: var(--size-input-sm); }
+.h-input-md { height: var(--size-input-md); }
+.h-input-lg { height: var(--size-input-lg); }
+
+.max-w-container-sm { max-width: var(--size-container-sm); }
+.max-w-container-md { max-width: var(--size-container-md); }
+.max-w-container-lg { max-width: var(--size-container-lg); }
+.max-w-container-xl { max-width: var(--size-container-xl); }
+.max-w-container-2xl { max-width: var(--size-container-2xl); }
+
+/* Border & Radius Utility Classes */
+.border-0 { border-width: var(--border-width-none); }
+.border { border-width: var(--border-width-sm); }
+.border-2 { border-width: var(--border-width-md); }
+.border-4 { border-width: var(--border-width-lg); }
+.border-8 { border-width: var(--border-width-xl); }
+
+.rounded-none { border-radius: var(--border-radius-none); }
+.rounded-xs { border-radius: var(--border-radius-xs); }
+.rounded-sm { border-radius: var(--border-radius-sm); }
+.rounded { border-radius: var(--border-radius-md); }
+.rounded-md { border-radius: var(--border-radius-md); }
+.rounded-lg { border-radius: var(--border-radius-lg); }
+.rounded-xl { border-radius: var(--border-radius-xl); }
+.rounded-2xl { border-radius: var(--border-radius-2xl); }
+.rounded-3xl { border-radius: var(--border-radius-3xl); }
+.rounded-full { border-radius: var(--border-radius-full); }
+
+/* Shadow Utility Classes */
+.shadow-none { box-shadow: var(--shadow-none); }
+.shadow-xs { box-shadow: var(--shadow-xs); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow { box-shadow: var(--shadow-md); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-2xl { box-shadow: var(--shadow-2xl); }
+.shadow-inner { box-shadow: var(--shadow-inner); }
+
+/* Z-Index Utility Classes */
+.z-base { z-index: var(--z-index-base); }
+.z-content { z-index: var(--z-index-content); }
+.z-dropdown { z-index: var(--z-index-dropdown); }
+.z-sticky { z-index: var(--z-index-sticky); }
+.z-modal-backdrop { z-index: var(--z-index-modal-backdrop); }
+.z-modal { z-index: var(--z-index-modal); }
+.z-tooltip { z-index: var(--z-index-tooltip); }
+.z-toast { z-index: var(--z-index-toast); }
+
+/* Animation Utility Classes */
+.duration-fast { transition-duration: var(--duration-fast); }
+.duration-normal { transition-duration: var(--duration-normal); }
+.duration-slow { transition-duration: var(--duration-slow); }
+.duration-slower { transition-duration: var(--duration-slower); }
+
+.ease-linear { transition-timing-function: var(--easing-linear); }
+.ease-in { transition-timing-function: var(--easing-in); }
+.ease-out { transition-timing-function: var(--easing-out); }
+.ease-in-out { transition-timing-function: var(--easing-in-out); }
+
+/* Opacity Utility Classes */
+.opacity-0 { opacity: var(--opacity-0); }
+.opacity-5 { opacity: var(--opacity-5); }
+.opacity-10 { opacity: var(--opacity-10); }
+.opacity-20 { opacity: var(--opacity-20); }
+.opacity-25 { opacity: var(--opacity-25); }
+.opacity-30 { opacity: var(--opacity-30); }
+.opacity-40 { opacity: var(--opacity-40); }
+.opacity-50 { opacity: var(--opacity-50); }
+.opacity-60 { opacity: var(--opacity-60); }
+.opacity-70 { opacity: var(--opacity-70); }
+.opacity-75 { opacity: var(--opacity-75); }
+.opacity-80 { opacity: var(--opacity-80); }
+.opacity-90 { opacity: var(--opacity-90); }
+.opacity-95 { opacity: var(--opacity-95); }
+.opacity-100 { opacity: var(--opacity-100); }
+
+/* Enhanced Component Utility Classes */
+.btn-sm {
+  height: var(--size-button-sm);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width-sm) solid transparent;
+  transition: all var(--duration-fast) var(--easing-in-out);
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-md {
+  height: var(--size-button-md);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width-sm) solid transparent;
+  transition: all var(--duration-fast) var(--easing-in-out);
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-lg {
+  height: var(--size-button-lg);
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-lg);
+  border: var(--border-width-sm) solid transparent;
+  transition: all var(--duration-fast) var(--easing-in-out);
+  cursor: pointer;
+  outline: none;
+}
+
+.input-sm {
+  height: var(--size-input-sm);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  background-color: var(--color-surface-default);
+  color: var(--color-content-default);
+  transition: all var(--duration-fast) var(--easing-in-out);
+  outline: none;
+}
+
+.input-md {
+  height: var(--size-input-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-md);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  background-color: var(--color-surface-default);
+  color: var(--color-content-default);
+  transition: all var(--duration-fast) var(--easing-in-out);
+  outline: none;
+}
+
+.input-lg {
+  height: var(--size-input-lg);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-lg);
+  border-radius: var(--border-radius-lg);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  background-color: var(--color-surface-default);
+  color: var(--color-content-default);
+  transition: all var(--duration-fast) var(--easing-in-out);
+  outline: none;
+}
+
+.input-sm:focus,
+.input-md:focus,
+.input-lg:focus {
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px var(--color-brand-primary-alpha-20);
+}
+
+/* Card Component Classes */
+.card {
+  background-color: var(--color-surface-elevated);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-normal) var(--easing-out);
+}
+
+.card-hover:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  padding: var(--space-6);
+  border-bottom: var(--border-width-sm) solid var(--color-border-subtle);
+}
+
+.card-body {
+  padding: var(--space-6);
+}
+
+.card-footer {
+  padding: var(--space-6);
+  border-top: var(--border-width-sm) solid var(--color-border-subtle);
+  background-color: var(--color-surface-subtle);
+}
+
+/* Badge Component Classes */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-full);
+  border: var(--border-width-sm) solid transparent;
+}
+
+.badge-sm {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+.badge-md {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.badge-lg {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-md);
+}
+
+/* ===== FALLBACK UTILITY CLASSES ===== */
+/* In case CSS variables don't work, provide fallbacks */
+
+/* Layout & Display */
+.min-h-screen { min-height: 100vh; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.text-center { text-align: center; }
+.max-w-3xl { max-width: 48rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Spacing */
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-12 { margin-bottom: 3rem; }
+.mt-16 { margin-top: 4rem; }
+
+/* Typography */
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-md { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-5xl { font-size: 3rem; }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.leading-relaxed { line-height: 1.625; }
+
+/* Colors - Use design tokens */
+.bg-page { background-color: var(--color-background-page); }
+.text-primary { color: var(--color-content-primary); }
+.text-secondary { color: var(--color-content-secondary); }
+.text-tertiary { color: var(--color-content-tertiary); }
+
+/* Additional text colors for visibility */
+.text-black { color: var(--color-content-primary); }
+.text-dark { color: var(--color-content-primary); }
+.text-gray-900 { color: var(--color-content-primary); }
+.text-gray-800 { color: var(--color-content-primary); }
+.text-gray-700 { color: var(--color-content-secondary); }
+
+/* Card */
+.card { 
+  background-color: var(--color-background-surface); 
+  border: 1px solid var(--color-border-default); 
+  box-shadow: 0 1px 3px 0 var(--color-shadow); 
+}
+
+.rounded-lg { border-radius: 0.5rem; }
+
+/* Button */
+.btn-md {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+/* Brand Colors */
+.bg-brand-primary { background-color: var(--color-brand-primary); }
+.bg-brand-secondary { background-color: var(--color-brand-secondary); }
+.text-brand-primary { color: var(--color-brand-primary); }
+.text-brand-secondary { color: var(--color-brand-secondary); }
+.text-on-brand { color: var(--color-content-on-brand); }
+
+/* Status Colors */
+.text-success { color: var(--color-status-success); }
+.text-warning { color: var(--color-status-warning); }
+.text-info { color: var(--color-status-info); }
+
+/* Subtle Backgrounds */
+.bg-brand-primary-subtle { background-color: var(--color-brand-primary-subtle); }
+.bg-brand-secondary-subtle { background-color: var(--color-brand-secondary-subtle); }
+.bg-success-subtle { background-color: var(--color-status-success-background-subtle); }
+.bg-warning-subtle { background-color: var(--color-status-warning-background-subtle); }
+.bg-info-subtle { background-color: var(--color-status-info-background-subtle); }
+
+/* Borders */
+.border-t { border-top: 1px solid var(--color-border-default); }
+.border-default { border-color: var(--color-border-default); }
+
+/* Grid */
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Responsive */
+@media (min-width: 768px) {
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Width & Height */
+.w-full { width: 100%; }
+.h-16 { height: 4rem; }
+.max-w-6xl { max-width: 72rem; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Flexbox */
+.flex-wrap { flex-wrap: wrap; }
+
+/* Hover Effects */
+.hover\:bg-gray-50:hover { background-color: var(--color-interaction-hover); }
+
+/* Additional Colors */
+.bg-cyan-100 { background-color: var(--color-cyan-100); }
+.text-cyan-700 { color: var(--color-cyan-700); }
+.border-cyan-200 { border-color: var(--color-cyan-200); }
+
+/* Text Visibility Fixes */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-content-primary);
+  font-weight: 600;
+}
+
+p {
+  color: var(--color-content-secondary);
+}
+
+span {
+  color: inherit;
+}
+
+/* Override any transparent colors */
+.text-transparent {
+  color: var(--color-content-primary);
+}
+
+/* Font Awesome Icon Fixes */
+.svg-inline--fa {
+  color: var(--color-content-primary);
+  fill: currentColor;
+}
+
+.fa, .fas, .far, .fal, .fad, .fab {
+  color: var(--color-content-primary);
+}
+
+/* Icon containers should not have transparent colors */
+
+
+/* =======================
+   🎯 ICON UTILITY CLASSES
+   ======================= */
+
+/* Icon Sizes */
+.icon-xs { 
+  width: var(--icon-size-xs); 
+  height: var(--icon-size-xs); 
+  flex-shrink: 0;
+}
+.icon-sm { 
+  width: var(--icon-size-sm); 
+  height: var(--icon-size-sm); 
+  flex-shrink: 0;
+}
+.icon-md { 
+  width: var(--icon-size-md); 
+  height: var(--icon-size-md); 
+  flex-shrink: 0;
+}
+.icon-lg { 
+  width: var(--icon-size-lg); 
+  height: var(--icon-size-lg); 
+  flex-shrink: 0;
+}
+.icon-xl { 
+  width: var(--icon-size-xl); 
+  height: var(--icon-size-xl); 
+  flex-shrink: 0;
+}
+.icon-2xl { 
+  width: var(--icon-size-2xl); 
+  height: var(--icon-size-2xl); 
+  flex-shrink: 0;
+}
+.icon-3xl { 
+  width: var(--icon-size-3xl); 
+  height: var(--icon-size-3xl); 
+  flex-shrink: 0;
+}
+
+/* Icon Colors - Use Design Tokens */
+.icon-primary { color: var(--color-content-primary); }
+.icon-secondary { color: var(--color-content-secondary); }
+.icon-tertiary { color: var(--color-content-tertiary); }
+.icon-brand { color: var(--color-brand-primary); }
+.icon-success { color: var(--color-status-success); }
+.icon-warning { color: var(--color-status-warning); }
+.icon-danger { color: var(--color-status-danger); }
+.icon-info { color: var(--color-status-info); }
+.icon-white { color: var(--color-content-on-brand); }
+
+/* Default icon color for Font Awesome */
+.fa-icon, [data-icon] {
+  color: var(--color-content-primary);
+}
+
+/* Font Awesome specific fixes */
+svg[data-icon] {
+  color: var(--color-content-primary);
+  fill: currentColor;
+}
+
+/* Icon States */
+.icon-disabled { opacity: var(--icon-opacity-disabled); }
+.icon-muted { opacity: var(--icon-opacity-muted); }
+.icon-normal { opacity: var(--icon-opacity-normal); }
+
+/* Icon with Text Layouts */
+.icon-text-left {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--icon-gap-sm);
+}
+.icon-text-right {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: var(--icon-gap-sm);
+}
+.icon-text-top {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--icon-gap-xs);
+}
+.icon-text-bottom {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--icon-gap-xs);
+}
+
+/* Icon Button Styles */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--easing-out);
+  padding: var(--space-2);
+}
+
+.icon-button:hover {
+  background-color: var(--color-gray-100);
+}
+
+.icon-button:active {
+  background-color: var(--color-gray-200);
+  transform: scale(0.95);
+}
+
+.icon-button.icon-button-primary:hover {
+  background-color: var(--color-pink-50);
+  color: var(--color-pink-600);
+}
+
+.icon-button.icon-button-success:hover {
+  background-color: var(--color-green-50);
+  color: var(--color-green-600);
+}
+
+.icon-button.icon-button-warning:hover {
+  background-color: var(--color-amber-50);
+  color: var(--color-amber-600);
+}
+
+.icon-button.icon-button-danger:hover {
+  background-color: var(--color-red-50);
+  color: var(--color-red-600);
+}
+
+/* Icon Animation Classes */
+.icon-spin {
+  animation: icon-spin 1s linear infinite;
+}
+
+.icon-pulse {
+  animation: icon-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.icon-bounce {
+  animation: icon-bounce 1s infinite;
+}
+
+@keyframes icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes icon-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes icon-bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* =======================
+   🔧 TEXT VISIBILITY FIXES
+   ======================= */
+
+/* Simple text utility classes */
+.text-dark {
+  color: #111827;
+}
+
+.text-light {
+  color: #f9fafb;
+}
+
+/* Card text should be readable */
+.card * {
+  color: var(--color-content-primary);
+}
+
+/* =======================
+   🌙 THEME TOGGLE BUTTON
+   ======================= */
+
+.theme-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: var(--color-background-surface);
+  border: 2px solid var(--color-border-default);
+  color: var(--color-content-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-index-sticky);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: white;
+  box-shadow: var(--shadow-xl);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* =======================
+   🎨 ICON TOKENS SYSTEM
+   ======================= */
+
+/* Icon Size Tokens */
+.icon-xs {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.icon-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon-md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-lg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-xl {
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon-2xl {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.icon-3xl {
+  width: 3rem;
+  height: 3rem;
+}
+
+.icon-4xl {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* Icon Color Tokens - Semantic Colors */
+.icon-primary {
+  color: var(--color-content-primary);
+}
+
+.icon-secondary {
+  color: var(--color-content-secondary);
+}
+
+.icon-tertiary {
+  color: var(--color-content-tertiary);
+}
+
+.icon-brand {
+  color: var(--color-brand-primary);
+}
+
+.icon-success {
+  color: var(--color-status-success);
+}
+
+.icon-warning {
+  color: var(--color-status-warning);
+}
+
+.icon-error {
+  color: var(--color-status-error);
+}
+
+.icon-info {
+  color: var(--color-status-info);
+}
+
+.icon-muted {
+  color: var(--color-content-muted);
+}
+
+.icon-inverse {
+  color: var(--color-content-inverse);
+}
+
+/* Icon State Tokens */
+.icon-interactive {
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--easing-out);
+}
+
+.icon-interactive:hover {
+  color: var(--color-brand-primary);
+  transform: scale(1.1);
+}
+
+.icon-interactive:active {
+  transform: scale(0.95);
+}
+
+.icon-disabled {
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+}
+
+/* Icon Background Tokens */
+.icon-bg-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background-color: var(--color-background-subtle);
+  padding: var(--space-2);
+}
+
+.icon-bg-square {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background-color: var(--color-background-subtle);
+  padding: var(--space-2);
+}
+
+.icon-bg-primary {
+  background-color: var(--color-brand-primary);
+  color: white;
+}
+
+.icon-bg-success {
+  background-color: var(--color-status-success);
+  color: white;
+}
+
+.icon-bg-warning {
+  background-color: var(--color-status-warning);
+  color: white;
+}
+
+.icon-bg-error {
+  background-color: var(--color-status-error);
+  color: white;
+}
+
+/* Icon Spacing Tokens */
+.icon-mr-1 { margin-right: var(--space-1); }
+.icon-mr-2 { margin-right: var(--space-2); }
+.icon-mr-3 { margin-right: var(--space-3); }
+.icon-ml-1 { margin-left: var(--space-1); }
+.icon-ml-2 { margin-left: var(--space-2); }
+.icon-ml-3 { margin-left: var(--space-3); }
